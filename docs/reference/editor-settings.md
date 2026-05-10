@@ -518,7 +518,7 @@ The following settings are specific to [ty's VS Code extension][ty-vscode].
 
 ### `importStrategy`
 
-Strategy for loading the `ty` executable.
+Strategy for loading the `by` executable.
 
 - `fromEnvironment` finds ty in the environment, falling back to the bundled version
 - `useBundled` uses the version bundled with the extension
@@ -542,7 +542,7 @@ ______________________________________________________________________
 A list of paths to Python interpreters. Even though this is a list, only the first interpreter is
 used.
 
-The interpreter path is used to find the `ty` executable when
+The interpreter path is used to find the `by` executable when
 [`ty.importStrategy`](#importstrategy) is set to `fromEnvironment`.
 
 **Default value**: `[]`
@@ -561,7 +561,7 @@ ______________________________________________________________________
 
 ### `path`
 
-A list of path to `ty` executables.
+A list of path to `by` executables.
 
 The extension uses the first executable that exists. This setting takes precedence over the
 [`ty.importStrategy`](#importstrategy) setting.
@@ -574,7 +574,7 @@ The extension uses the first executable that exists. This setting takes preceden
 
 ```json
 {
-  "ty.path": ["/home/user/.local/bin/ty"]
+  "ty.path": ["/home/user/.local/bin/by"]
 }
 ```
 

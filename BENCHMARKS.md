@@ -16,7 +16,7 @@ usage: [Black](https://github.com/psf/black), [discord.py](https://github.com/Ra
 [Prefect](https://github.com/PrefectHQ/prefect), and [PyTorch](https://github.com/pytorch/pytorch).
 
 For instructions on running the benchmarks, see
-[`ty_benchmark/README.md`](https://github.com/astral-sh/ruff/blob/7f7485d608d2da19a0632a1238f2d4be551f612f/scripts/ty_benchmark/README.md).
+[`ty_benchmark/README.md`](https://github.com/KotlinIsland/basedpython/blob/main/scripts/ty_benchmark/README.md).
 
 ## CLI
 

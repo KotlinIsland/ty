@@ -342,12 +342,12 @@ uses the current working directory or the `--project` option to determine the pr
 
 For monorepos with multiple Python packages, you have a few options:
 
-1. **Run ty per-package**: Run `ty check` from each package directory, or use `--project` to specify
+1. **Run ty per-package**: Run `by check` from each package directory, or use `--project` to specify
     the package:
 
     ```bash
-    ty check --project packages/package-a
-    ty check --project packages/package-b
+    by check --project packages/package-a
+    by check --project packages/package-b
     ```
 
 1. **Configure multiple source roots**: Use [`environment.root`](./configuration.md#root) to specify
@@ -371,7 +371,7 @@ it with ty by using uv's `--with-requirements` flag to install the dependencies 
 script header:
 
 ```bash
-uvx --with-requirements script.py ty check script.py
+uvx --with-requirements script.py by check script.py
 ```
 
 If you have multiple scripts in your workspace, ty does not yet recognize that they have different

@@ -14,8 +14,8 @@ from pathlib import Path
 # The benchmark SVG includes a CSS media query that adapts to light/dark mode.
 # PyPI doesn't support this, so we replace it with a light-only version.
 # See: https://github.com/pypi/warehouse/issues/11251
-BENCHMARK_URL = "https://raw.githubusercontent.com/astral-sh/ty/main/docs/assets/ty-benchmark-cli.svg"
-BENCHMARK_URL_LIGHT = "https://raw.githubusercontent.com/astral-sh/ty/main/docs/assets/ty-benchmark-cli-light.svg"
+BENCHMARK_URL = "https://raw.githubusercontent.com/KotlinIsland/basedpython-by/main/docs/assets/ty-benchmark-cli.svg"
+BENCHMARK_URL_LIGHT = "https://raw.githubusercontent.com/KotlinIsland/basedpython-by/main/docs/assets/ty-benchmark-cli-light.svg"
 
 
 def main() -> None:
@@ -40,7 +40,7 @@ def main() -> None:
     # Replace relative src="./..." attributes with absolute GitHub raw URLs.
     def replace_src(match: re.Match) -> str:
         path = match.group(1).lstrip("./")
-        return f'src="https://raw.githubusercontent.com/astral-sh/ty/{version}/{path}"'
+        return f'src="https://raw.githubusercontent.com/KotlinIsland/basedpython-by/{version}/{path}"'
 
     content = re.sub(r'src="(\./[^"]+)"', replace_src, content)
 
@@ -49,7 +49,8 @@ def main() -> None:
         url = match.group(1)
         if not url.startswith("http"):
             url = urllib.parse.urljoin(
-                f"https://github.com/astral-sh/ty/blob/{version}/README.md", url
+                f"https://github.com/KotlinIsland/basedpython-by/blob/{version}/README.md",
+                url,
             )
         return f"]({url})"
 

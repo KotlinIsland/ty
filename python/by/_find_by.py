@@ -5,13 +5,13 @@ import sys
 import sysconfig
 
 
-class TyNotFound(FileNotFoundError): ...
+class ByNotFound(FileNotFoundError): ...
 
 
-def find_ty_bin() -> str:
-    """Return the ty binary path."""
+def find_by_bin() -> str:
+    """Return the by binary path."""
 
-    ty_exe = "ty" + sysconfig.get_config_var("EXE")
+    by_exe = "by" + sysconfig.get_config_var("EXE")
 
     targets = [
         # The scripts directory for the current Python
@@ -20,18 +20,18 @@ def find_ty_bin() -> str:
         sysconfig.get_path("scripts", vars={"base": sys.base_prefix}),
         # Above the package root, e.g., from `pip install --prefix` or `uv run --with`
         (
-            # On Windows, with module path `<prefix>/Lib/site-packages/ty`
-            _join(_matching_parents(_module_path(), "Lib/site-packages/ty"), "Scripts")
+            # On Windows, with module path `<prefix>/Lib/site-packages/by`
+            _join(_matching_parents(_module_path(), "Lib/site-packages/by"), "Scripts")
             if sys.platform == "win32"
-            # On Unix,  with module path `<prefix>/lib/python3.13/site-packages/ty`
+            # On Unix,  with module path `<prefix>/lib/python3.13/site-packages/by`
             else _join(
-                _matching_parents(_module_path(), "lib/python*/site-packages/ty"),
+                _matching_parents(_module_path(), "lib/python*/site-packages/by"),
                 "bin",
             )
         ),
         # Adjacent to the package root, e.g., from `pip install --target`
-        # with module path `<target>/ty`
-        _join(_matching_parents(_module_path(), "ty"), "bin"),
+        # with module path `<target>/by`
+        _join(_matching_parents(_module_path(), "by"), "bin"),
         # The user scheme scripts directory, e.g., `~/.local/bin`
         sysconfig.get_path("scripts", scheme=_user_scheme()),
     ]
@@ -43,13 +43,13 @@ def find_ty_bin() -> str:
         if target in seen:
             continue
         seen.append(target)
-        path = os.path.join(target, ty_exe)
+        path = os.path.join(target, by_exe)
         if os.path.isfile(path):
             return path
 
     locations = "\n".join(f" - {target}" for target in seen)
-    raise TyNotFound(
-        f"Could not find the ty binary in any of the following locations:\n{locations}\n"
+    raise ByNotFound(
+        f"Could not find the by binary in any of the following locations:\n{locations}\n"
     )
 
 

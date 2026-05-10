@@ -28,7 +28,7 @@ permissions:
 
 jobs:
   docker-build:
-    name: Build Docker image (ghcr.io/astral-sh/ty) for ${{ matrix.platform }}
+    name: Build Docker image (ghcr.io/${{ github.repository_owner }}/ty) for ${{ matrix.platform }}
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.plan != '' && !fromJson(inputs.plan).announcement_tag_is_implicit && 'release' || '' }}
@@ -111,7 +111,7 @@ jobs:
           retention-days: 1
 
   docker-publish:
-    name: Publish Docker image (ghcr.io/astral-sh/ty)
+    name: Publish Docker image (ghcr.io/${{ github.repository_owner }}/ty)
     runs-on: ubuntu-latest
     environment:
       name: release
@@ -223,9 +223,9 @@ jobs:
           # Generate Dockerfile content
           cat <<EOF > Dockerfile
           FROM ${BASE_IMAGE}
-          COPY --from=${TY_BASE_IMG}:latest /ty /usr/local/bin/ty
+          COPY --from=${TY_BASE_IMG}:latest /by /usr/local/bin/by
           ENTRYPOINT []
-          CMD ["/usr/local/bin/ty"]
+          CMD ["/usr/local/bin/by"]
           EOF
 
           # Initialize a variable to store all tag docker metadata patterns
@@ -285,11 +285,11 @@ jobs:
           subject-name: ${{ env.TY_BASE_IMG }}
           subject-digest: ${{ steps.build-and-push.outputs.digest }}
 
-  # This is effectively a duplicate of `docker-publish` to make https://github.com/astral-sh/ty/pkgs/container/ty
+  # This is effectively a duplicate of `docker-publish` to make the container package page
   # show the ty base image first since GitHub always shows the last updated image digests
   # This works by annotating the original digests (previously non-annotated) which triggers an update to ghcr.io
   docker-republish:
-    name: Annotate Docker image (ghcr.io/astral-sh/ty)
+    name: Annotate Docker image (ghcr.io/${{ github.repository_owner }}/ty)
     runs-on: ubuntu-latest
     environment:
       name: release

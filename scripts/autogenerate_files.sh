@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 #
-# Generate files and copy documentation from Ruff.
+# Generate files and copy documentation from basedpython.
 #
 # Usage
 #
@@ -15,10 +15,10 @@ cd "$project_root"
 echo "Updating lockfile..."
 uv lock
 
-echo "Copying reference documentation from Ruff..."
-cp ./ruff/crates/ty/docs/cli.md ./docs/reference/
-cp ./ruff/crates/ty/docs/configuration.md ./docs/reference/
-cp ./ruff/crates/ty/docs/rules.md ./docs/reference/
-cp ./ruff/crates/ty/docs/environment.md ./docs/reference/
+echo "Copying reference documentation from basedpython..."
+cp ./basedpython/crates/ty/docs/cli.md ./docs/reference/
+cp ./basedpython/crates/ty/docs/configuration.md ./docs/reference/
+cp ./basedpython/crates/ty/docs/rules.md ./docs/reference/
+cp ./basedpython/crates/ty/docs/environment.md ./docs/reference/
 
-echo "Documentation has been copied from Ruff submodule"
+echo "Documentation has been copied from basedpython submodule"

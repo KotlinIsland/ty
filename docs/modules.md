@@ -55,7 +55,7 @@ The Python environment is used for discovery of third-party modules.
 
 By default, ty will attempt to discover a virtual environment.
 
-First, ty checks for an active virtual environment using the `VIRTUAL_ENV` environment variable. If
+First, by checks for an active virtual environment using the `VIRTUAL_ENV` environment variable. If
 not set, ty will search for a `.venv` directory in the project root or working directory. ty only
 supports discovery of virtual environments at this time.
 

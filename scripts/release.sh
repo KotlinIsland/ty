@@ -8,41 +8,41 @@
 #
 set -eu
 
-echo "Checking Ruff submodule status..."
-if git -C ruff diff --quiet; then
-    echo "Ruff submodule is clean; continuing..."
+echo "Checking basedpython submodule status..."
+if git -C basedpython diff --quiet; then
+    echo "basedpython submodule is clean; continuing..."
 else
-    echo "Ruff submodule has uncommitted changes; aborting!"
+    echo "basedpython submodule has uncommitted changes; aborting!"
     exit 1
 fi
 
-ruff_head=$(git -C ruff rev-parse --abbrev-ref HEAD)
-case "${ruff_head}" in
+basedpython_head=$(git -C basedpython rev-parse --abbrev-ref HEAD)
+case "${basedpython_head}" in
     "HEAD")
-        echo "Ruff submodule has detached HEAD; switching to main..."
-        git -C ruff checkout main > /dev/null 2>&1
+        echo "basedpython submodule has detached HEAD; switching to main..."
+        git -C basedpython checkout main > /dev/null 2>&1
         ;;
     "main")
-        echo "Ruff submodule is on main branch; continuing..."
+        echo "basedpython submodule is on main branch; continuing..."
         ;;
     *)
-        echo "Ruff submodule is on branch ${ruff_head} but must be on main; aborting!"
+        echo "basedpython submodule is on branch ${basedpython_head} but must be on main; aborting!"
         exit 1
         ;;
 esac
 
 
-# Save the current typeshed source commit before updating ruff,
+# Save the current typeshed source commit before updating basedpython,
 # so we can generate a typeshed diff link for the changelog later.
-typeshed_commit_file="ruff/crates/ty_vendored/vendor/typeshed/source_commit.txt"
+typeshed_commit_file="basedpython/crates/ty_vendored/vendor/typeshed/source_commit.txt"
 old_typeshed_commit=""
 if [ -f "$typeshed_commit_file" ]; then
     old_typeshed_commit=$(cat "$typeshed_commit_file")
 fi
 
-echo "Updating Ruff to the latest commit..."
-git -C ruff pull origin main
-git add ruff
+echo "Updating basedpython to the latest commit..."
+git -C basedpython pull origin main
+git add basedpython
 
 script_root="$(realpath "$(dirname "$0")")"
 project_root="$(dirname "$script_root")"

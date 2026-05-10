@@ -1,4 +1,4 @@
-# ty
+# by
 
 An extremely fast Python type checker and language server, written in Rust.
 
@@ -14,8 +14,8 @@ An extremely fast Python type checker and language server, written in Rust.
   <i>Type checking the <a href="https://github.com/home-assistant/core">home-assistant</a> project without caching.</i>
 </p>
 
-ty is backed by [Astral](https://astral.sh), the creators of
-[uv](https://github.com/astral-sh/uv) and [Ruff](https://github.com/astral-sh/ruff).
+by is built on [basedpython](https://github.com/KotlinIsland/basedpython) (a fork of
+[Ruff](https://github.com/astral-sh/ruff)) and based on Astral's [ty](https://github.com/astral-sh/ty).
 
 ## Highlights
 
@@ -31,10 +31,11 @@ ty is backed by [Astral](https://astral.sh), the creators of
 
 ## Getting started
 
-Run ty with [uvx](https://docs.astral.sh/uv/guides/tools/#running-tools) to get started quickly:
+Install `basedpython` from PyPI to get the `by` CLI:
 
 ```shell
-uvx ty check
+pip install basedpython
+by check
 ```
 
 ty will check all Python files in the working directory or project by default.
@@ -43,16 +44,6 @@ See the [type checking](./type-checking.md) documentation for more details.
 
 ## Installation
 
-To install ty, see the [installation](./installation.md) documentation.
+To install by, see the [installation](./installation.md) documentation.
 
 To add the ty language server to your editor, see the [editor integration](./editors.md) guide.
-
-## Playground
-
-ty has an [online playground](https://play.ty.dev) you can use to try it out on snippets or small
-projects.
-
-!!! tip
-
-    The playground is a great way to share snippets with other people, e.g., when sharing a bug
-    report.

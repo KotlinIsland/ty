@@ -88,14 +88,14 @@ You can enable ty and disable basedpyright by adding this to your `settings.json
 }
 ```
 
-You can override the `ty` executable Zed uses by setting `lsp.ty.binary`:
+You can override the `by` executable Zed uses by setting `lsp.ty.binary`:
 
 ```json
 {
   "lsp": {
     "ty": {
       "binary": {
-        "path": "/home/user/.local/bin/ty",
+        "path": "/home/user/.local/bin/by",
         "arguments": ["server"]
       }
     }
@@ -130,7 +130,7 @@ ty can be utilized as a language server via the built-in [Eglot](https://www.gnu
 ```elisp
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-               '(python-base-mode . ("ty" "server"))))
+               '(python-base-mode . ("by" "server"))))
 
 (add-hook 'python-base-mode-hook 'eglot-ensure)
 ```
@@ -143,7 +143,7 @@ protocol](https://microsoft.github.io/language-server-protocol/).
 To start the language server, use the `server` subcommand:
 
 ```shell
-ty server
+by server
 ```
 
 Refer to your editor's documentation to learn how to connect to an LSP server.

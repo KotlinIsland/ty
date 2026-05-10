@@ -18,7 +18,7 @@ env:
   CARGO_NET_RETRY: 10
   CARGO_TERM_COLOR: always
   RUSTUP_MAX_RETRIES: 10
-  PACKAGE_NAME: ty
+  PACKAGE_NAME: basedpython
 
 jobs:
   python-package:
@@ -42,14 +42,14 @@ jobs:
       - name: "Test wheel"
         run: |
           pip install --force-reinstall --find-links dist "${PACKAGE_NAME}" --pre
-          ty --help
-          python -m ty --help
+          by --help
+          python -m by --help
       - name: "Remove wheels from cache"
         run: rm -rf target/wheels
 
   prek:
     name: "prek"
-    runs-on: depot-ubuntu-22.04-16
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

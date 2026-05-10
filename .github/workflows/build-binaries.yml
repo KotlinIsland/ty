@@ -27,7 +27,7 @@ permissions:
   contents: read
 
 env:
-  PACKAGE_NAME: ty
+  PACKAGE_NAME: basedpython
   MODULE_NAME: ty
   PYTHON_VERSION: "3.13"
   CARGO_INCREMENTAL: 0
@@ -95,11 +95,11 @@ jobs:
       - name: "Archive binary"
         run: |
           TARGET=x86_64-apple-darwin
-          ARCHIVE_NAME=ty-$TARGET
+          ARCHIVE_NAME=by-$TARGET
           ARCHIVE_FILE=$ARCHIVE_NAME.tar.gz
 
           mkdir -p $ARCHIVE_NAME
-          cp ruff/target/$TARGET/release/ty $ARCHIVE_NAME/ty
+          cp basedpython/target/$TARGET/release/by $ARCHIVE_NAME/by
           tar czvf $ARCHIVE_FILE $ARCHIVE_NAME
           shasum -a 256 $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
       - name: "Upload binary"
@@ -143,11 +143,11 @@ jobs:
       - name: "Archive binary"
         run: |
           TARGET=aarch64-apple-darwin
-          ARCHIVE_NAME=ty-$TARGET
+          ARCHIVE_NAME=by-$TARGET
           ARCHIVE_FILE=$ARCHIVE_NAME.tar.gz
 
           mkdir -p $ARCHIVE_NAME
-          cp ruff/target/$TARGET/release/ty $ARCHIVE_NAME/ty
+          cp basedpython/target/$TARGET/release/by $ARCHIVE_NAME/by
           tar czvf $ARCHIVE_FILE $ARCHIVE_NAME
           shasum -a 256 $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
       - name: "Upload binary"
@@ -206,8 +206,8 @@ jobs:
       - name: "Archive binary"
         shell: bash
         run: |
-          ARCHIVE_FILE=ty-${{ matrix.platform.target }}.zip
-          7z a $ARCHIVE_FILE ./ruff/target/${{ matrix.platform.target }}/release/ty.exe
+          ARCHIVE_FILE=by-${{ matrix.platform.target }}.zip
+          7z a $ARCHIVE_FILE ./basedpython/target/${{ matrix.platform.target }}/release/by.exe
           sha256sum $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
       - name: "Upload binary"
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -261,11 +261,11 @@ jobs:
           set -euo pipefail
 
           TARGET=${{ matrix.target }}
-          ARCHIVE_NAME=ty-$TARGET
+          ARCHIVE_NAME=by-$TARGET
           ARCHIVE_FILE=$ARCHIVE_NAME.tar.gz
 
           mkdir -p $ARCHIVE_NAME
-          cp ruff/target/$TARGET/release/ty $ARCHIVE_NAME/ty
+          cp basedpython/target/$TARGET/release/by $ARCHIVE_NAME/by
           tar czvf $ARCHIVE_FILE $ARCHIVE_NAME
           shasum -a 256 $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
       - name: "Upload binary"
@@ -351,11 +351,11 @@ jobs:
           set -euo pipefail
 
           TARGET=${{ matrix.platform.target }}
-          ARCHIVE_NAME=ty-$TARGET
+          ARCHIVE_NAME=by-$TARGET
           ARCHIVE_FILE=$ARCHIVE_NAME.tar.gz
 
           mkdir -p $ARCHIVE_NAME
-          cp ruff/target/$TARGET/release/ty $ARCHIVE_NAME/ty
+          cp basedpython/target/$TARGET/release/by $ARCHIVE_NAME/by
           tar czvf $ARCHIVE_FILE $ARCHIVE_NAME
           shasum -a 256 $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
       - name: "Upload binary"
@@ -412,11 +412,11 @@ jobs:
           set -euo pipefail
 
           TARGET=${{ matrix.target }}
-          ARCHIVE_NAME=ty-$TARGET
+          ARCHIVE_NAME=by-$TARGET
           ARCHIVE_FILE=$ARCHIVE_NAME.tar.gz
 
           mkdir -p $ARCHIVE_NAME
-          cp ruff/target/$TARGET/release/ty $ARCHIVE_NAME/ty
+          cp basedpython/target/$TARGET/release/by $ARCHIVE_NAME/by
           tar czvf $ARCHIVE_FILE $ARCHIVE_NAME
           shasum -a 256 $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
       - name: "Upload binary"
@@ -480,11 +480,11 @@ jobs:
           set -euo pipefail
 
           TARGET=${{ matrix.platform.target }}
-          ARCHIVE_NAME=ty-$TARGET
+          ARCHIVE_NAME=by-$TARGET
           ARCHIVE_FILE=$ARCHIVE_NAME.tar.gz
 
           mkdir -p $ARCHIVE_NAME
-          cp ruff/target/$TARGET/release/ty $ARCHIVE_NAME/ty
+          cp basedpython/target/$TARGET/release/by $ARCHIVE_NAME/by
           tar czvf $ARCHIVE_FILE $ARCHIVE_NAME
           shasum -a 256 $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
       - name: "Upload binary"

@@ -1,7 +1,7 @@
 """Update ty.json in schemastore.
 
-This script will clone `astral-sh/schemastore`, update the schema and push the changes
-to a new branch tagged with the ty git hash. You should see a URL to create the PR
+This script will clone `KotlinIsland/schemastore`, update the schema and push the changes
+to a new branch tagged with the by git hash. You should see a URL to create the PR
 to schemastore in the CLI.
 
 Usage:
@@ -18,14 +18,14 @@ from subprocess import check_call, check_output
 from tempfile import TemporaryDirectory
 from typing import NamedTuple, assert_never
 
-# The remote URL for the `ty` repository.
-TY_REPO = "https://github.com/astral-sh/ty"
+# The remote URL for the `by` repository.
+TY_REPO = "https://github.com/KotlinIsland/basedpython-by"
 
-# The path to the root of the `ty` repository.
+# The path to the root of the `by` repository.
 TY_ROOT = Path(__file__).parent.parent
 
-# The path to the JSON schema in the `ty` repository.
-TY_SCHEMA = TY_ROOT / "ruff" / "ty.schema.json"
+# The path to the JSON schema in the `by` repository.
+TY_SCHEMA = TY_ROOT / "basedpython" / "ty.schema.json"
 
 # The path to the JSON schema in the `schemastore` repository.
 TY_JSON = Path("schemas/json/ty.json")
@@ -44,12 +44,12 @@ class GitProtocol(enum.Enum):
         match self:
             case GitProtocol.SSH:
                 return SchemastoreRepos(
-                    fork="git@github.com:astral-sh/schemastore.git",
+                    fork="git@github.com:KotlinIsland/schemastore.git",
                     upstream="git@github.com:SchemaStore/schemastore.git",
                 )
             case GitProtocol.HTTPS:
                 return SchemastoreRepos(
-                    fork="https://github.com/astral-sh/schemastore.git",
+                    fork="https://github.com/KotlinIsland/schemastore.git",
                     upstream="https://github.com/SchemaStore/schemastore.git",
                 )
             case _:
@@ -156,23 +156,31 @@ def determine_git_protocol(argv: list[str] | None = None) -> GitProtocol:
 
 
 def main() -> None:
-    expected_ruff_revision = check_output(
-        ["git", "ls-tree", "main", "--format", "%(objectname)", "ruff"], cwd=TY_ROOT
+    expected_basedpython_revision = check_output(
+        ["git", "ls-tree", "main", "--format", "%(objectname)", "basedpython"],
+        cwd=TY_ROOT,
     ).strip()
-    actual_ruff_revision = check_output(
-        ["git", "-C", "ruff", "rev-parse", "HEAD"], cwd=TY_ROOT
+    actual_basedpython_revision = check_output(
+        ["git", "-C", "basedpython", "rev-parse", "HEAD"], cwd=TY_ROOT
     ).strip()
 
-    if expected_ruff_revision != actual_ruff_revision:
+    if expected_basedpython_revision != actual_basedpython_revision:
         print(
-            f"The ruff submodule is at {actual_ruff_revision} but main expects {expected_ruff_revision}"
+            f"The basedpython submodule is at {actual_basedpython_revision} but main expects {expected_basedpython_revision}"
         )
         match input(
             "How do you want to proceed (u=reset submodule, n=abort, y=continue)? "
         ):
             case "u":
                 check_call(
-                    ["git", "-C", "ruff", "reset", "--hard", expected_ruff_revision],
+                    [
+                        "git",
+                        "-C",
+                        "basedpython",
+                        "reset",
+                        "--hard",
+                        expected_basedpython_revision,
+                    ],
                     cwd=TY_ROOT,
                 )
             case "n":

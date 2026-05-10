@@ -1,12 +1,12 @@
 [project]
-name = "ty"
-version = "0.0.34"
+name = "basedpython"
+version = "0.0.0"
 requires-python = ">=3.8"
 dependencies = []
-description = "An extremely fast Python type checker, written in Rust."
+description = "a type-checker and transpiler for basedpython and Python"
 readme = "README.md"
-authors = [{ name = "Astral Software Inc.", email = "hey@astral.sh" }]
-keywords = ["ty", "typing", "analysis", "check"]
+authors = [{ name = "KotlinIsland" }]
+keywords = ["basedpython", "by", "ty", "typing", "analysis", "check"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
@@ -30,10 +30,9 @@ classifiers = [
 ]
 
 [project.urls]
-Repository = "https://github.com/astral-sh/ty"
-Changelog = "https://github.com/astral-sh/ty/blob/main/CHANGELOG.md"
-Releases = "https://github.com/astral-sh/ty/releases"
-Discord = "https://discord.gg/astral-sh"
+Repository = "https://github.com/KotlinIsland/basedpython-by"
+Changelog = "https://github.com/KotlinIsland/basedpython-by/blob/main/CHANGELOG.md"
+Releases = "https://github.com/KotlinIsland/basedpython-by/releases"
 
 [build-system]
 requires = ["maturin>=1.0,<2.0"]
@@ -46,8 +45,8 @@ release = ["rooster"]
 cache-keys = [
     { file = "pyproject.toml" },
     { file = "dist-workspace.toml" },
-    { file = "ruff/Cargo.toml" },
-    { file = "ruff/Cargo.lock" },
+    { file = "basedpython/Cargo.toml" },
+    { file = "basedpython/Cargo.lock" },
     { file = "**/*.rs" },
 ]
 
@@ -55,7 +54,7 @@ cache-keys = [
 release = {requires-python = ">=3.12"}
 
 [tool.ruff]
-extend-exclude = ["ruff"]
+extend-exclude = ["basedpython"]
 per-file-target-version = { "scripts/**" = "py313" }
 
 [tool.ruff.lint]
@@ -88,8 +87,8 @@ required-imports = ["from __future__ import annotations"]
 
 [tool.maturin]
 bindings = "bin"
-manifest-path = "ruff/crates/ty/Cargo.toml"
-module-name = "ty"
+manifest-path = "basedpython/crates/ty/Cargo.toml"
+module-name = "by"
 python-source = "python"
 strip = true
 include = [
@@ -105,8 +104,8 @@ version-files = [
     { path = "dist-workspace.toml", field = "workspace.version", format = "cargo" },
     "docs/installation.md",
 ]
-submodules = ["ruff"]
-require-labels = [{ submodule = "ruff", labels = ["ty"] }]
+submodules = ["basedpython"]
+require-labels = [{ submodule = "basedpython", labels = ["ty"] }]
 ignore-labels = [
     "internal",
     "testing",
